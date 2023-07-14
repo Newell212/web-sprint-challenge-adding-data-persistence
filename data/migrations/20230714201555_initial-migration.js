@@ -26,6 +26,7 @@ exports.up = async function(knex) {
             .onUpdate('RESTRICT')
     })
     .createTable('project_resources', table => {
+        table.increments('project_resources_id')
         table.integer('project_id')
             .unsigned()
             .notNullable()
