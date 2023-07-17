@@ -1,6 +1,24 @@
-function getTasks() {
-    return Promise.resolve('Tasks retrieved')
+const db = require('../../data/dbConfig')
+
+function add(task) {
+    return db('tasks').insert(task)
+        .then((id) => {
+            return db('tasks').where('task_id', id).first()
+        })
+}
+
+async function getTasks() {
+    const taskRow = await db('tasks as t')
+        .leftJoin('projects as p', 't.project_id', 'p.project_id')
+        .select(
+            't.task_id',
+            't.task_description',
+            't.task_completed',
+            't.project_id'
+            
+        )
+        return taskRow
 }
 
 
-module.exports = { getTasks }
+module.exports = { getTasks, add }

@@ -9,6 +9,15 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+    const newRes = req.body
+    Resource.add(newRes)
+    .then( source => {
+        res.status(201).json(source)
+    })
+    .catch(next)
+})
+
 router.use((err, req, res, next) => { // eslint-disable-line
     res.status(500).json({
         customMessage: 'something went wrong in the resources router',

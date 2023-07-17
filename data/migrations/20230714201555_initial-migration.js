@@ -15,7 +15,7 @@ exports.up = async function(knex) {
     })
     .createTable('tasks', table => {
         table.increments('task_id')
-        table.string('task_desription')
+        table.string('task_description')
         table.boolean('task_completed')
         table.integer('project_id')
             .unsigned()
