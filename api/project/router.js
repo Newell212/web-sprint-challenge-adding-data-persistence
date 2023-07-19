@@ -4,6 +4,7 @@ const Project = require('./model')
 router.get('/', (req, res, next) => {
     Project.getProject()
         .then(resource => {
+            console.log(resource.resource_id)
             res.status(200).json(resource)
         })
         .catch(next)
@@ -11,7 +12,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     const newProj = req.body
-
+    console.log(newProj)
     Project.add(newProj)
     .then(proj => {
         res.status(201).json(proj)

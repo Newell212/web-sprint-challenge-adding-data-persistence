@@ -70,6 +70,7 @@ describe('server.js', () => {
       }, 750)
       test('[4] responds with the newly created project with its project_completed as a boolean', async () => {
         let res = await request(server).post('/api/projects').send(projectA)
+        console.log(res)
         expect(res.body).toMatchObject({ ...projectA, project_completed: false })
         res = await request(server).post('/api/projects').send(projectB)
         expect(res.body).toMatchObject({ ...projectB, project_completed: true })
