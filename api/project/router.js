@@ -14,8 +14,10 @@ router.post('/', (req, res, next) => {
     const newProj = req.body
     console.log(newProj)
     Project.add(newProj)
-    .then(proj => {
-        res.status(201).json(proj)
+    .then(resource => {
+        const project = {...resource, project_completed: resource.project_completed === 1 ? true : false}
+        
+        res.status(201).json(project)
     })
     .catch(next)
 })
