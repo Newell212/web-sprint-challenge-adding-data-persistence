@@ -4,7 +4,6 @@ const Project = require('./model')
 router.get('/', (req, res, next) => {
     Project.getProject()
         .then(resource => {
-            console.log(resource.resource_id)
             res.status(200).json(resource)
         })
         .catch(next)
